@@ -7,15 +7,10 @@ Dette er en enkel start på en kalender‑applikasjon i React Native (Expo) hvor
 - Listevisning på Home med navigasjon til detaljer
 - Styling i egen fil `styles /styles.js`
 
-## Kom i gang
-
-- Installer avhengigheter: `npm install`
-- Start appen: `npm run start`
 
 ## Demo‑video
 
-Lenke til demo‑video: https://example.com  
-(Erstatt med egen lenke når video er lastet opp.)
+Lenke til demo‑video: https://www.loom.com/share/80fddaffce304b1c92b9392136c69b1c?sid=f4edb31d-f466-4144-8051-a5c65d55bed2
 
 ## Struktur
 
@@ -28,5 +23,8 @@ Lenke til demo‑video: https://example.com
 ## Notater
 
 - Skjemaet i MakeAppointment lagrer avtalen i minne (state) og navigerer til Home.
-- Du kan senere koble til persistent lagring eller backend.
+
+
+
+
 
