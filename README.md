@@ -25,6 +25,10 @@ Lenke til demo‑video: https://www.loom.com/share/80fddaffce304b1c92b9392136c69
 - Skjemaet i MakeAppointment lagrer avtalen i minne (state) og navigerer til Home.
 
 
+## GitHub link
+link til GitHub repo: https://github.com/jan-arthur1007/gk1
+
+
 
 
 

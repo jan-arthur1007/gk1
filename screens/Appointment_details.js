@@ -1,4 +1,4 @@
-// Detaljskjerm: viser informasjon om én valgt avtale.
+// Detaljskjerm: viser informasjon om én valgt avtale, inkludert gruppevalg.
 import React from 'react';
 import { View, Text } from 'react-native';
 import styles from '../styles /styles';
@@ -23,6 +23,13 @@ export default function AppointmentDetails({ route }) {
         <Text style={styles.detailLabel}>Dato:</Text>
         <Text style={styles.detailValue}>{appointment.date}</Text>
       </View>
+      {/* Viser hvilken gruppe som eier avtalen dersom satt */}
+      {appointment.groupName ? (
+        <View style={styles.detailRow}>
+          <Text style={styles.detailLabel}>Gruppe:</Text>
+          <Text style={styles.detailValue}>{appointment.groupName}</Text>
+        </View>
+      ) : null}
       <View style={styles.detailRow}>
         <Text style={styles.detailLabel}>Deltakere:</Text>
         <Text style={styles.detailValue}>{(appointment.participants || []).join(', ') || '—'}</Text>

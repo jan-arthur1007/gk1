@@ -16,6 +16,12 @@ export default function HomeScreen({ navigation, appointments = [] }) {
         <Text style={styles.cardTitle}>{item.title}</Text>
         <Text style={styles.cardDate}>{item.date}</Text>
       </View>
+      {/* Viser gruppetilknytning dersom avtalen er delt */}
+      {item.groupName ? (
+        <Text style={styles.cardSubtitle} numberOfLines={1}>
+          Gruppe: {item.groupName}
+        </Text>
+      ) : null}
       <Text style={styles.cardSubtitle} numberOfLines={1}>
         Deltakere: {(item.participants || []).join(', ')}
       </Text>
