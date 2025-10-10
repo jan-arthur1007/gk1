@@ -119,6 +119,13 @@ export default function FriendsScreen({ navigation }) {
   }, []);
 
   const normalizedSearch = sanitize(searchValue);
+  const userIndex = useMemo(() => {
+    const index = {};
+    allUsers.forEach((user) => {
+      index[user.uid] = user;
+    });
+    return index;
+  }, [allUsers]);
   const suggestions = useMemo(() => {
     if (!normalizedSearch) {
       return [];
@@ -339,11 +346,11 @@ export default function FriendsScreen({ navigation }) {
             data={groups}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
-              <TouchableOpacity
-                style={styles.card}
-                onPress={() => {
-                  const parent = navigation.getParent?.();
-                  if (parent) {
+                <TouchableOpacity
+                  style={styles.card}
+                  onPress={() => {
+                    const parent = navigation.getParent?.();
+                    if (parent) {
                     parent.navigate('GroupDetails', { groupId: item.id });
                   } else {
                     navigation.navigate('GroupDetails', { groupId: item.id });
@@ -352,7 +359,11 @@ export default function FriendsScreen({ navigation }) {
               >
                 <Text style={styles.cardTitle}>{item.name}</Text>
                 <Text style={styles.cardSubtitle}>
-                  {item.memberCount || '-'} medlemmer • Eier: {item.ownerUid === uid ? 'deg' : item.ownerUid}
+                  {item.memberCount || '-'} medlemmer • Eier: {
+                    item.ownerUid === uid
+                      ? 'deg'
+                      : item.ownerName || userIndex[item.ownerUid]?.username || item.ownerUid
+                  }
                 </Text>
               </TouchableOpacity>
             )}

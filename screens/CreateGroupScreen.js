@@ -123,6 +123,7 @@ export default function CreateGroupScreen({ navigation }) {
           id: groupId,
           name: trimmed,
           ownerUid: uid,
+          ownerName: username,
           createdAt: now,
           members,
         },
@@ -130,6 +131,7 @@ export default function CreateGroupScreen({ navigation }) {
           id: groupId,
           name: trimmed,
           ownerUid: uid,
+          ownerName: username,
           createdAt: now,
           memberCount: Object.keys(members).length,
         },
@@ -140,6 +142,7 @@ export default function CreateGroupScreen({ navigation }) {
           id: groupId,
           name: trimmed,
           ownerUid: uid,
+          ownerName: username,
           createdAt: now,
           memberCount: Object.keys(members).length,
         };

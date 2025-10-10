@@ -139,7 +139,7 @@ export default function GroupDetailsScreen({ route, navigation }) {
     }
 
     const finalMembers = { ...selected };
-    // Sørg for at eier alltid er med
+    // Sørg for at eier alltid er med i medlemslisten
     finalMembers[uid] = {
       uid,
       username,
@@ -170,6 +170,7 @@ export default function GroupDetailsScreen({ route, navigation }) {
           id: groupId,
           name: trimmedName,
           ownerUid: group.ownerUid,
+          ownerName: group.ownerName || username,
           createdAt: group.createdAt,
           memberCount,
         };
