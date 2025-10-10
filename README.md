@@ -44,7 +44,8 @@ Lenke til demo‑video: https://www.loom.com/share/5ff1777baf4b41a7a49e2482e8552
 
 
 ## GitHub link
-link til GitHub repo: https://github.com/jan-arthur1007/gk1
+link til GitHub repo: https://github.com/jan-arthur1007/gk1/tree/godkendelsesoppgave-2
+
 
 
 
