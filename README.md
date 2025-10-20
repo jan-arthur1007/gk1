@@ -3,8 +3,9 @@
 Dette er en videreutviklet kalender-applikasjon bygget i React Native (Expo) hvor brukere kan logge inn, legge til venner, lage grupper og opprette avtaler med medlemmene i gruppen.
 Appen er koblet til Firebase Authentication for innlogging og Firestore for lagring av brukere, venner, grupper og avtaler.
 
-Jeg har hatt hovedansvar for utviklingen av de sosiale funksjonene i applikasjonen, inkludert FriendsScreen, CreateGroupScreen og GroupDetailsScreen. I tillegg har jeg vært med på å implementere logikken for MakeAppointment og opprettelse av avtaler knyttet til grupper. Firebase-integrasjonen og datamodellen for brukere, venner og grupper er utviklet i tett samarbeid mellom oss i gruppen.
+Niklas har hatt hovedansvar for utviklingen av autentiserings- og profilsystemet, inkludert AuthScreen, Signup og Login, som håndterer registrering og innlogging av brukere via Firebase Authentication. Han har også kodet ProfileScreen, som viser brukerens e-post og brukernavn hentet fra databasen.
 
+Jan Arthur har hatt hovedansvar for utviklingen av de sosiale funksjonene i applikasjonen, inkludert FriendsScreen, CreateGroupScreen og GroupDetailsScreen, hvor brukerne kan søke etter venner, legge dem til, og samle dem i grupper. I tillegg har han implementert logikken for MakeAppointment og opprettelse av avtaler knyttet til grupper. Begge har samarbeidet tett om implementeringen av Firebase Firestore og datamodellen som knytter sammen brukere, venner og grupper for å sikre en sømløs helhet i applikasjonen.
 
 ## Hvordan appen fungerer
 
