@@ -1,10 +1,31 @@
 // Hjem-skjermen: viser en liste over avtaler og lar brukeren
 // trykke på en avtale for å se detaljer.
-import React from 'react';
-import { View, FlatList, TouchableOpacity, Text } from 'react-native';
+import React, { useCallback } from 'react';
+import { View, FlatList, TouchableOpacity, Text, Alert } from 'react-native';
 import styles from '../styles /styles';
+import { auth } from '../database/firebase';
+import { linkGoogleCalendar, hasGoogleClientId, promptMissingClientId } from '../services/googleCalendar';
 
 export default function HomeScreen({ navigation, appointments = [] }) {
+  const handleManualConnect = useCallback(async () => {
+    if (!hasGoogleClientId()) {
+      promptMissingClientId();
+      return;
+    }
+    const current = auth.currentUser;
+    if (!current) {
+      Alert.alert('Ikke innlogget', 'Du må være innlogget før du kan koble til Google-kalenderen.');
+      return;
+    }
+    try {
+      await linkGoogleCalendar(current);
+      Alert.alert('Google-kalender tilkoblet', 'Kalenderen er nå knyttet til kontoen din.');
+    } catch (error) {
+      console.log('Google Calendar link failed:', error);
+      Alert.alert('Feil', 'Klarte ikke å koble til Google-kalenderen. Prøv igjen.');
+    }
+  }, []);
+
   // Renders ett listeelement (avtale-kort)
   const renderItem = ({ item }) => (
     <TouchableOpacity
@@ -31,6 +52,19 @@ export default function HomeScreen({ navigation, appointments = [] }) {
   return (
     <View style={styles.screenContainer}>
       <Text style={styles.screenTitle}>Dine avtaler</Text>
+      <TouchableOpacity
+        style={{
+          backgroundColor: '#2563eb',
+          paddingVertical: 12,
+          borderRadius: 8,
+          marginBottom: 16,
+        }}
+        onPress={handleManualConnect}
+      >
+        <Text style={{ color: '#fff', textAlign: 'center', fontWeight: '600' }}>
+          Koble til Google-kalender
+        </Text>
+      </TouchableOpacity>
       <FlatList
         // Selve data-listen
         data={appointments}

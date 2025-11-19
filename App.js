@@ -1,5 +1,7 @@
 // Appens hovedfil: setter opp stack/tab-navigasjon og synkroniserer data mot RTDB
 import { StatusBar } from 'expo-status-bar';
+import * as WebBrowser from 'expo-web-browser';
+WebBrowser.maybeCompleteAuthSession();
 import React, { useEffect, useMemo, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -19,6 +21,8 @@ import useUserGroups from './hooks/useUserGroups';
 import useUserAppointments from './hooks/useUserAppointments';
 
 const Stack = createNativeStackNavigator();
+
+//WebBrowser.maybeCompleteAuthSession();
 
 export default function App() {
   const [user, setUser] = useState(null);

@@ -1,5 +1,6 @@
+
 import React, { useMemo, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Alert } from 'react-native';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -10,6 +11,7 @@ import LoginForm from '../components/login';
 import SignUpForm from '../components/signup';
 import styles from '../styles /styles';
 import { auth, database } from '../database/firebase';
+import { linkGoogleCalendar, promptMissingClientId, hasGoogleClientId } from '../services/googleCalendar';
 
 const errorMessages = {
   'auth/invalid-email': 'Ugyldig e-postadresse.',
@@ -104,6 +106,35 @@ export default function AuthScreen() {
         }),
         set(ref(database, `usernameIndex/${finalUsername}`), current.uid),
       ]);
+
+      const handleConnectGoogle = async () => {
+        try {
+          await linkGoogleCalendar(current);
+          Alert.alert(
+            'Google-kalender tilkoblet',
+            'Vi har fått tilgang til Google-kalenderen din.'
+          );
+        } catch (e) {
+          console.log('Google Calendar link failed:', e);
+          Alert.alert('Feil', 'Klarte ikke å koble til Google-kalenderen. Prøv igjen.');
+        }
+      };
+
+      if (hasGoogleClientId()) {
+        Alert.alert(
+          'Koble til Google-kalender',
+          'Vil du knytte Google-kalenderen som hører til denne e-posten?',
+          [
+            { text: 'Ikke nå', style: 'cancel' },
+            {
+              text: 'Koble til',
+              onPress: handleConnectGoogle,
+            },
+          ]
+        );
+      } else {
+        promptMissingClientId();
+      }
     } catch (err) {
       console.error('Sign up failed', err);
       setError(mapAuthError(err.code, err.message || 'Noe gikk galt.'));
@@ -156,3 +187,7 @@ const authStyles = StyleSheet.create({
     fontSize: 12,
   },
 });
+
+
+
+
